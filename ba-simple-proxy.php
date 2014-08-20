@@ -114,6 +114,7 @@
 // Change these configuration options if needed, see above descriptions for info.
 $enable_jsonp    = true;
 $enable_native   = true;
+$default_port    = 80 ;
 $valid_url_regex = '/.*/';
 
 // ############################################################################
@@ -140,10 +141,11 @@ if ( !$url ) {
     curl_setopt( $ch, CURLOPT_POSTFIELDS, $_POST );
   }
 
-  $port = $_GET['port'];
-  if ( $port ){
-      curl_setopt( $ch, CURLOPT_PORT, intval($port) );
+  $port = $default_port;
+  if ( $_GET['port'] ){
+      $port = intval($_GET['port']);
   }
+  curl_setopt( $ch, CURLOPT_PORT, $port );
   
   if ( $_GET['send_cookies'] ) {
     $cookie = array();
