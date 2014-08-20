@@ -140,7 +140,7 @@ if ( !$url ) {
     curl_setopt( $ch, CURLOPT_POSTFIELDS, $_POST );
   }
 
-  $port = $_GET['port']
+  $port = $_GET['port'];
   if ( $port ){
       curl_setopt( $ch, CURLOPT_PORT, intval($port) );
   }
