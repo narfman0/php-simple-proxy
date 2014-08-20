@@ -2,33 +2,8 @@
 
 // Script: Simple PHP Proxy: Get external HTML, JSON and more!
 //
-// *Version: 1.6, Last updated: 1/24/2009*
-// 
-// Project Home - http://benalman.com/projects/php-simple-proxy/
-// GitHub       - http://github.com/cowboy/php-simple-proxy/
-// Source       - http://github.com/cowboy/php-simple-proxy/raw/master/ba-simple-proxy.php
-// 
-// About: License
-// 
-// Copyright (c) 2010 "Cowboy" Ben Alman,
-// Dual licensed under the MIT and GPL licenses.
-// http://benalman.com/about/license/
-// 
-// About: Examples
-// 
-// This working example, complete with fully commented code, illustrates one way
-// in which this PHP script can be used.
-// 
-// Simple - http://benalman.com/code/projects/php-simple-proxy/examples/simple/
-// 
-// About: Release History
-// 
-// 1.6 - (1/24/2009) Now defaults to JSON mode, which can now be changed to
-//       native mode by specifying ?mode=native. Native and JSONP modes are
-//       disabled by default because of possible XSS vulnerability issues, but
-//       are configurable in the PHP script along with a url validation regex.
-// 1.5 - (12/27/2009) Initial release
-// 
+// URL: github.com/narfman0/php-simple-proxy
+//
 // Topic: GET Parameters
 // 
 // Certain GET (query string) parameters may be passed into ba-simple-proxy.php
@@ -36,6 +11,7 @@
 // 
 //   url - The remote URL resource to fetch. Any GET parameters to be passed
 //     through to the remote URL resource must be urlencoded in this parameter.
+//   port - Port on which to fetch resources
 //   mode - If mode=native, the response will be sent using the same content
 //     type and headers that the remote URL resource returned. If omitted, the
 //     response will be JSON (or JSONP). <Native requests> and <JSONP requests>
@@ -162,6 +138,11 @@ if ( !$url ) {
   if ( strtolower($_SERVER['REQUEST_METHOD']) == 'post' ) {
     curl_setopt( $ch, CURLOPT_POST, true );
     curl_setopt( $ch, CURLOPT_POSTFIELDS, $_POST );
+  }
+
+  $port = $_GET['port']
+  if ( $port ){
+      curl_setopt( $ch, CURLOPT_PORT, intval($port) );
   }
   
   if ( $_GET['send_cookies'] ) {
