@@ -112,8 +112,8 @@
 // ############################################################################
 
 // Change these configuration options if needed, see above descriptions for info.
-$enable_jsonp    = false;
-$enable_native   = false;
+$enable_jsonp    = true;
+$enable_native   = true;
 $valid_url_regex = '/.*/';
 
 // ############################################################################
